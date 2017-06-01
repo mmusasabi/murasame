@@ -1,5 +1,17 @@
-.hoge {
-  .piyo {
-    color: #ff0000;
-  }
+html, body {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+#sidemenu {
+  flex-basis: 200px;
+}
+
+#console {
+  flex-grow: 1;
 }

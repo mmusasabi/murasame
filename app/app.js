@@ -22,7 +22,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'dist')));
 app.use(sassMiddleware({
   /* Options */
   src: path.join(__dirname, 'style'),
@@ -34,7 +33,7 @@ app.use(sassMiddleware({
 // Note: you must place sass-middleware *before* `express.static` or else it will
 // not work.
 app.use('/public', express.static(path.join(__dirname, 'public')));
-
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/', index);
 app.use('/users', users);

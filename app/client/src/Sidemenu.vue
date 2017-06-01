@@ -1,11 +1,11 @@
 <template lang="pug">
-#console
+#sidemenu
     |{{ msg }}
 </template>
 
 <script>
   export default {
-    name: 'console',
+    name: 'sidemenu',
     data () {
       return {
         msg: 'Welcome to Your Vue.js App'
@@ -15,8 +15,7 @@
 </script>
 
 <style lang="scss">
-    #console {
-        background-color: #333333;
-        color: #ffffff;
+    #sidemenu {
+        background-color: #cccccc;
     }
 </style>
