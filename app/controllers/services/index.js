@@ -13,11 +13,18 @@ router.get('/', function(req, res, next) {
 })
 
 router.post('/', function(req, res, next) {
-  let service = new Service({id: "hoge", name: "name"})
-  service.save((err) => {
-    console.log(err)
+  let service = new Service({
+    id: req.body.id,
+    name: req.body.name
   })
-  res.send({})
+
+  service.save((err) => {
+    let body = {
+      status: !err
+    }
+    res.send(body)
+  })
+
 })
 
 module.exports = router
