@@ -1,10 +1,8 @@
 extends layout
 
 block content
-  .container
-    #sidemenu
-    #console
+  #app
+    router-view
 
 block scripts
-  script(src='/sidemenu.js')
-  script(src='/console.js')
+  script(src='/main.js')

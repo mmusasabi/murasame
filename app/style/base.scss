@@ -1,17 +1,17 @@
-html, body {
+html, body, #app {
   height: 100%;
-}
-
-.container {
-  display: flex;
-  align-items: stretch;
-  height: 100%;
-}
-
-#sidemenu {
-  flex-basis: 200px;
 }
 
 #console {
-  flex-grow: 1;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+
+  #sidemenu {
+    flex-basis: 200px;
+  }
+
+  #main-console {
+    flex-grow: 1;
+  }
 }
