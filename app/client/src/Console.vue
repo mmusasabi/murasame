@@ -1,7 +1,6 @@
-<template>
-    <div id="console">
-        {{ msg }}
-    </div>
+<template lang="pug">
+#console
+    |{{ msg }}
 </template>
 
 <script>
@@ -15,5 +14,5 @@
   }
 </script>
 
-<style>
+<style lang="scss">
 </style>

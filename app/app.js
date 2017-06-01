@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var sassMiddleware = require('node-sass-middleware');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -20,8 +21,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'dist')));
+app.use(sassMiddleware({
+  /* Options */
+  src: path.join(__dirname, 'style'),
+  dest: path.join(__dirname, 'dist/style'),
+  debug: true,
+  outputStyle: 'compressed',
+  prefix:  '/style'
+}));
+// Note: you must place sass-middleware *before* `express.static` or else it will
+// not work.
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', index);
 app.use('/users', users);
