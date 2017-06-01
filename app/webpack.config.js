@@ -1,12 +1,21 @@
 var path = require('path')
 var webpack = require('webpack')
 
+var glob = require('glob')
+
+
+const base_path = path.resolve(__dirname, 'client/src/')
+const targets = glob.sync(`${base_path}/*.js`)
+
+const entries = {}
+targets.forEach((p) => entries[p.replace(/^.+\/([^\/]+?)\.js$/, '$1')] = p)
+
 module.exports = {
-  entry: './client/src/main.js',
+  entry: entries,
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
