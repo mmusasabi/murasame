@@ -4,7 +4,14 @@ services:
     build: .
     volumes:
       - ./app:/app
+    links:
+      - db
     tty: true
     # command: ["node", "index.js"]
     ports:
       - 3000:3000
+  db:
+    image: mongo:3.4
+    restart: always
+    volumes:
+      - ./mongodb/data:/data/db
