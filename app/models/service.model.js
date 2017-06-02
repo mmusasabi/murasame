@@ -10,6 +10,8 @@ var ServiceSchema = new Schema({
   name: {
     type: String
   }
+}, {
+  capped: 1024
 });
 
 module.exports = mongoose.model('Service', ServiceSchema);

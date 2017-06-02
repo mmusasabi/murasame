@@ -2,7 +2,7 @@
 #sidemenu
   ul.menu
     li(v-for="service in services")
-      router-link(:to="'services/'+service.id")
+      router-link(:to="'/services/'+service.id")
         |{{ service.name }}
 </template>
 
@@ -17,7 +17,7 @@
       }
     },
     mounted () {
-      Axios.get('/services')
+      Axios.get('/api/services')
         .then((res) => {
           this.services = res.data
         }).catch((err) => {
@@ -25,20 +25,22 @@
         })
     },
     methods: {
-      change_console(service_id) {
-        history.pushState({state: 'change_console'}, null, '/?service=' + service_id)
-      }
     }
   }
 </script>
 
 <style lang="scss">
   #sidemenu {
-    background-color: #cccccc;
+    background-color: #171214;
+    border-right: 1px solid #666666;
     .menu {
+      padding: 10px;
+      li {
+        padding: 5px 0;
+      }
       a {
         cursor: pointer;
-        color: #0066ff;
+        color: #ff3399;
         text-decoration: underline;
         &:hover {
           text-decoration: none;

@@ -1,7 +1,6 @@
-<template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+<template lang="pug">
+  #app
+    router-view
 </template>
 
 <script>
@@ -10,5 +9,5 @@
   }
 </script>
 
-<style>
+<style lang="scss">
 </style>

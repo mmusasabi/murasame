@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var Service = require('../../models/service.model')
+var Service = require('../../../models/service.model')
 
 router.get('/', function(req, res, next) {
   Service.find({}).exec()

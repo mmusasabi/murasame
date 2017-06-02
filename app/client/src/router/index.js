@@ -10,6 +10,11 @@ export default new Router({
       path: '/',
       name: 'Console',
       component: Console
+    },
+    {
+      path: '/services/:service_id',
+      name: 'Console',
+      component: Console
     }
   ]
 })

@@ -2,6 +2,11 @@ html, body, #app {
   height: 100%;
 }
 
+#app {
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+}
+
 #console {
   display: flex;
   align-items: stretch;
