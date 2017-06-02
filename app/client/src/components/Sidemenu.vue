@@ -2,7 +2,7 @@
 #sidemenu
   ul.menu
     li(v-for="service in services")
-      router-link(:to="service.id")
+      router-link(:to="'services/'+service.id")
         |{{ service.name }}
 </template>
 
