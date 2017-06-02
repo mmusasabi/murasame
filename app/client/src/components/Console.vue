@@ -30,19 +30,36 @@
     },
     beforeRouteUpdate (to, from, next) {
       this.service_id = to.params.service_id
+      this.logs = []
       this.load_logs()
 
       next()
     },
+    sockets: {
+      connect() {
+        console.log('io connect')
+      },
+      disconnect() {
+        console.log('io disconnect')
+      },
+      log_tail(data) {
+        this.logs.push(data.log)
+      }
+    },
     methods: {
       load_logs() {
-        Axios.get('/api/logs/' + this.service_id)
-          .then((res) => {
-            this.logs = res.data
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+
+        this.$socket.emit("switch_service", {
+          service_id: this.service_id
+        })
+
+//        Axios.get('/api/logs/' + this.service_id)
+//          .then((res) => {
+//            this.logs = res.data
+//          })
+//          .catch((err) => {
+//            console.log(err)
+//          })
       }
     },
     components: {
@@ -70,7 +87,7 @@
     }
 
     span {
-      padding: 0 2px;
+      padding: 0 5px;
     }
     .timestamp {
       color: #b0d7ff;

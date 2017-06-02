@@ -31,7 +31,7 @@
 
 <style lang="scss">
   #sidemenu {
-    background-color: #171214;
+    background-color: #333333;
     border-right: 1px solid #666666;
     .menu {
       padding: 10px;
