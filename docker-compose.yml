@@ -30,6 +30,7 @@ services:
     build: ./fluentd/test1
     volumes:
       - ./fluentd/test1/fluentd:/fluentd/etc
+      - ./sample/rails1/log:/tmp/log1
     environment:
       FLUENTD_CONF: fluent.conf
     ports:
@@ -38,7 +39,7 @@ services:
     build: ./fluentd/test2
     volumes:
       - ./fluentd/test2/fluentd:/fluentd/etc
-      - ./sample/rails1/log:/tmp/log
+      - ./sample/rails2/log:/tmp/log2
     environment:
       FLUENTD_CONF: fluent.conf
     ports:
@@ -50,6 +51,14 @@ services:
       - ./sample/rails1/log:/app/log
     ports:
       - 9292:9292
+    command: ["rails", "server", "-b", "0.0.0.0"]
+  rails2:
+    build: ./sample/rails2
+    volumes:
+      - ./sample/rails2:/app
+      - ./sample/rails2/log:/app/log
+    ports:
+      - 9293:9292
     command: ["rails", "server", "-b", "0.0.0.0"]
 #    tty: true
 #    depends_on:

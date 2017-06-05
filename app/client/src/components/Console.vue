@@ -87,6 +87,7 @@
     li {
       background-color: #333333;
       padding: 3px 5px;
+      white-space: pre;
       &:nth-child(odd) {
         background-color: #555555;
       }
