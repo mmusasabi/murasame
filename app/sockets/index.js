@@ -43,5 +43,11 @@ function SocketIo(server) {
         })
       })
     })
+
+    socket.on('disconnect', () => {
+      if (users[socket.id]) {
+        users[socket.id].destroy()
+      }
+    })
   })
 }

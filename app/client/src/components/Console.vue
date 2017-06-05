@@ -45,6 +45,7 @@
       },
       disconnect() {
         console.log('io disconnect')
+        this.$socket.emit('disconnect')
       },
       log_tail(data) {
         this.logs.push(data.log)
