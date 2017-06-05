@@ -17,7 +17,7 @@ let LogSchema = new Schema({
     type: Date
   }
 }, {
-  capped: 1024
+  capped: 104857600
 })
 
 module.exports = mongoose.model('Log', LogSchema)

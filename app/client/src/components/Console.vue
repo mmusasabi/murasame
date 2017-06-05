@@ -7,7 +7,7 @@
         span.timestamp {{ log.timestamp }}
         span.host {{ log.host }}
         span.message {{ log.message }}
-
+    #bottom-dummy
 </template>
 
 <script>
@@ -27,6 +27,10 @@
     },
     mounted () {
       this.load_logs()
+    },
+    updated () {
+//      $('#main-console').scrollTop($("#bottom-dummy").offset().top)
+      $('#main-console').scrollTop($('.logs').height())
     },
     beforeRouteUpdate (to, from, next) {
       this.service_id = to.params.service_id
@@ -72,6 +76,8 @@
   #main-console {
     background-color: #333333;
     color: #ffffff;
+    height: 100%;
+    overflow: auto;
   }
   .logs {
     font-family: Monaco,'Lucida Console',Courier,monospace;
