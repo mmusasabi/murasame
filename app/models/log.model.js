@@ -20,4 +20,6 @@ let LogSchema = new Schema({
   capped: 104857600
 })
 
+LogSchema.index({ service_id: 1, host: 1 })
+
 module.exports = mongoose.model('Log', LogSchema)

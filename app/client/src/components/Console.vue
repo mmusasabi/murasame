@@ -5,7 +5,7 @@
     ul.logs
       li(v-for="log in logs")
         span.timestamp {{ log.timestamp }}
-        span.host {{ log.host }}
+        span.host(@click="filter_host(log.host)") {{ log.host }}
         span.message {{ log.message }}
     #bottom-dummy
 </template>
@@ -64,6 +64,13 @@
 //          .catch((err) => {
 //            console.log(err)
 //          })
+      },
+      filter_host(hostname) {
+        this.logs = []
+        this.$socket.emit("filter_host", {
+          service_id: this.service_id,
+          hostname: hostname
+        })
       }
     },
     components: {
@@ -101,6 +108,10 @@
     }
     .host {
       color: #8ee478;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
     }
     .message {
       color: #eeeeee;
