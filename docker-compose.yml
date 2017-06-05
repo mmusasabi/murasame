@@ -15,3 +15,47 @@ services:
     restart: always
     volumes:
       - ./mongodb/data:/data/db
+
+  aggregator:
+    build: ./fluentd/aggregator
+    volumes:
+      - ./fluentd/aggregator/fluentd:/fluentd/etc
+    links:
+      - db
+    environment:
+      FLUENTD_CONF: fluent.conf
+    ports:
+      - 24224:24224
+  test1:
+    build: ./fluentd/test1
+    volumes:
+      - ./fluentd/test1/fluentd:/fluentd/etc
+    environment:
+      FLUENTD_CONF: fluent.conf
+    ports:
+      - 24225:24224
+  test2:
+    build: ./fluentd/test2
+    volumes:
+      - ./fluentd/test2/fluentd:/fluentd/etc
+      - ./sample/rails1/log:/tmp/log
+    environment:
+      FLUENTD_CONF: fluent.conf
+    ports:
+      - 24226:24224
+  rails1:
+    build: ./sample/rails1
+    volumes:
+      - ./sample/rails1:/app
+      - ./sample/rails1/log:/app/log
+    ports:
+      - 9292:9292
+    command: ["rails", "server", "-b", "0.0.0.0"]
+#    tty: true
+#    depends_on:
+#      - aggregator
+#    logging:
+#      driver: fluentd
+#      options:
+#        fluentd-address: localhost:24226
+#        tag: remotetail.{{.ID}}-{{.Name}}
