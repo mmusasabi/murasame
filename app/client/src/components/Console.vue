@@ -19,7 +19,7 @@
           span.cancel(@click="filter_host_cancel")
             icon(name="close")
 
-        input.filtered-box(type="text" autofocus="autofocus")
+        input.filtered-box(v-model="word" v-on:keyup.enter="filter_word" type="text" autofocus="autofocus")
 </template>
 
 <script>
@@ -32,6 +32,7 @@
       return {
         service_id: "",
         hostname: "",
+        word: "",
         logs: []
       }
     },
@@ -84,13 +85,20 @@
         this.hostname = hostname
         this.$socket.emit("filter_host", {
           service_id: this.service_id,
-          hostname: hostname
+          hostname: this.hostname
         })
       },
       filter_host_cancel() {
         this.hostname = ""
         this.$socket.emit("switch_service", {
           service_id: this.service_id
+        })
+      },
+      filter_word() {
+        this.logs = []
+        this.$socket.emit("filter_word", {
+          service_id: this.service_id,
+          word: this.word
         })
       }
     },
