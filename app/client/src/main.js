@@ -7,6 +7,10 @@ import VueSocketIO from 'vue-socket.io'
 export const SocketInstance = socketio('http://localhost:3000')
 Vue.use(VueSocketIO, SocketInstance)
 
+import Icon from 'vue-awesome/components/Icon.vue'
+import 'vue-awesome/icons'
+Vue.component('icon', Icon);
+
 new Vue({
   el: '#app',
   router,
